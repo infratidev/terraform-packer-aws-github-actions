@@ -1,0 +1,54 @@
+name: Terraform and Packer AWS Automation Deploy
+on:
+  pull_request:
+    branches:
+      - main
+
+
+env:
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  ARGS: "-av"
+
+jobs:
+   packer_terraform:
+    name: 'packer_terraform'
+    runs-on: ubuntu-latest
+    env:
+      TF_WORKING_DIR: './scripts'
+
+    defaults:
+      run:
+        shell: bash
+        working-directory: ${{ env.TF_WORKING_DIR }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_wrapper: false
+
+      - name: Install Packer
+        uses: hashicorp-contrib/setup-packer@v1
+
+      - name: Install Jq
+        id: jq_install
+        run: |
+            mkdir -p ${HOME}/.local/bin
+            wget https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64 -O ${HOME}/.local/bin/jq
+            chmod +x ${HOME}/.local/bin/jq
+            echo "${HOME}/.local/bin" >> $GITHUB_PATH
+        shell: bash    
+
+      - name: Init script terraform-packer-aws.sh
+        id: init_script
+        run: |
+            chmod +x terraform-packer-aws.sh 
+            ./terraform-packer-aws.sh all
+        shell: bash
+
+
+
