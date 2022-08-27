@@ -6,7 +6,7 @@ resource "aws_instance" "web" {
 
 user_data = <<-EOF
   #!/bin/bash
-  sudo echo "<h1> Welcome to my packer and terraform ==> infrati.dev <== WebServer IP: $(curl -s ifconfig.me) </h1>" | sudo tee "/var/www/html/index.html"
+  sudo echo "<h1> Welcome to my packer and terraform ==> https://infrati.dev <== WebServer IP: $(curl -s ifconfig.me) </h1>" | sudo tee "/var/www/html/index.html"
   EOF
 
   volume_tags = {
