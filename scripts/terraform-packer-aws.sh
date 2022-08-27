@@ -33,15 +33,15 @@ case "$1" in
       echo "$subnet_id"
       echo ""
 
-      echo "Change vpc_id Packer.json"   
+      echo "Change vpc_id packer.pkr.hcl"   
       sudo sed -i '/vpc_id/s/.*/vpc_id="'$vpc_id'"/' $packerhclpath/$packerhclfilename && packer fmt $packerhclpath/$packerhclfilename
       echo ""
 
-      echo "Change subnet_id Packer.json"
+      echo "Change subnet_id packer.pkr.hcl"
       sudo sed -i '/subnet_id/s/.*/subnet_id="'$subnet_id'"/' $packerhclpath/$packerhclfilename && packer fmt $packerhclpath/$packerhclfilename
       echo ""
 
-      echo "Validate Packer.json"
+      echo "Validate packer.pkr.hcl"
       cd $packerhclpath && packer validate $packerhclfilename
 
       echo ""
