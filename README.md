@@ -12,7 +12,7 @@
 
 ![Estrutura](./images/01-terraform-packer-aws-github-action.png)
 
-- Esse projeto será executado utlizando o github-action. Projeto foi criado para ser executado locacalmente também nesse repositório [terraform-packer-aws](https://github.com/infratidev/terraform-packer-aws)
+- Esse projeto será executado utlizando o github-action. Projeto foi criado para ser executado localmente também nesse repositório [terraform-packer-aws](https://github.com/infratidev/terraform-packer-aws)
 - PR sendo aprovado e feito o merge na branch main em uma ```única ação```, ao executar ```./terraform-packer-aws.sh``` com o parâmentro ```all``` ```./terraform-packer-aws.sh all``` será executado:
     - Através do terraform, o provisionamento da infraestrutura de rede para o packer realizar o build utilizando a AWS.
     - Após infraestrutura de rede pronta, o packer irá realizar o build da imagem na AWS utilizando a infraestrutura de rede específica, onde será executado o script ```userdata.sh``` instalando um servidor apache.
