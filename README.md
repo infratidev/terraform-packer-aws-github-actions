@@ -1,6 +1,6 @@
 [![Blog](https://img.shields.io/website?down_color=blue&down_message=infrati.dev&label=Blog&logo=ghost&logoColor=green&style=for-the-badge&up_color=blue&up_message=infrati.dev&url=https%3A%2F%2Finfrati.dev)](https://infrati.dev)
 
-### Projeto terraform packer aws utlizando o github action, sendo acionado via PR
+### Projeto terraform packer aws utlizando o github actions, sendo acionado via PR
 
 ### Contents 
   - [scripts](scripts/)
@@ -8,11 +8,11 @@
   - [terraform-packer-deploy-aws](terraform-packer-deploy-aws/)
   - [terraform-packer-network-aws](terraform-packer-network-aws/)
 
-### Projeto terraform packer aws com github-action
+### Projeto terraform packer aws com github-actions
 
 ![Estrutura](./images/01-terraform-packer-aws-github-action.png)
 
-- Esse projeto será executado utlizando o github-action. Projeto foi criado para ser executado localmente também nesse repositório [terraform-packer-aws](https://github.com/infratidev/terraform-packer-aws)
+- Esse projeto será executado utlizando o github-actions. Projeto foi criado para ser executado localmente também nesse repositório [terraform-packer-aws](https://github.com/infratidev/terraform-packer-aws)
 - PR sendo aprovado e feito o merge na branch main em uma ```única ação```, ao executar ```./terraform-packer-aws.sh``` com o parâmentro ```all``` ```./terraform-packer-aws.sh all``` será executado:
     - Através do terraform, o provisionamento da infraestrutura de rede para o packer realizar o build utilizando a AWS.
     - Após infraestrutura de rede pronta, o packer irá realizar o build da imagem na AWS utilizando a infraestrutura de rede específica, onde será executado o script ```userdata.sh``` instalando um servidor apache.
